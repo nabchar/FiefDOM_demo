@@ -1,0 +1,82 @@
+html, body, figure, figcaption, ul, li, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 60px;
+  margin: 30px;
+}
+
+div.play-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+div.play {
+  background: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  margin-right: 20px;
+}
+.play:hover {
+  cursor: pointer;
+  background: green;
+}
+
+div.score-outer {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+span {
+  padding: 5px;
+}
+
+figure {
+  display: inline-block;
+  border: 10px solid black;
+}
+
+ul {
+}
+
+ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+li {
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+
+.apple {
+  background: red;
+}
+
+.snake {
+  background: green;
+}
