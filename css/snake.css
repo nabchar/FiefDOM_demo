@@ -1,4 +1,6 @@
-html, body, figure, figcaption, ul, li, h1 {
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic");
+
+html, body, figure, figcaption, ul, li, h1, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -6,27 +8,41 @@ html, body, figure, figcaption, ul, li, h1 {
   text-align: inherit;
 }
 
+header {
+  padding: 10px 10px 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+div.header-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 350px;
+}
+
 ul {
   list-style: none;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
   text-align: center;
   font-weight: bold;
 }
 
 h1 {
-  font-size: 60px;
-  margin: 30px;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 div.play-container {
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100px;
-  margin-bottom: 20px;
+  padding-bottom: 5px;
 }
 
 div.play {
@@ -36,7 +52,6 @@ div.play {
   color: black;
   font-weight: bold;
   padding: 5px;
-  margin-right: 20px;
 }
 .play:hover {
   cursor: pointer;
@@ -79,4 +94,45 @@ li {
 
 .snake {
   background: green;
+}
+
+footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul.icons {
+      content: none;
+      clear:none;
+
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center
+      width: 50%;
+		}
+
+ul.icons li {
+  float: none;
+  display: inline-block;
+  padding: padding: 10px;
+  font-size: 30px;
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+}
+
+i {
+  padding-right: 10px;
+  color: black;
+}
+
+a.source {
+  color: indianred;
+  font-weight: 900;
 }
