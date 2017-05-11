@@ -1,3 +1,4 @@
+import openModal from './modal';
 const Board = require('./board.js');
 
 class View {
@@ -62,7 +63,7 @@ class View {
       this.render();
     } else {
 
-      alert("You lose!");
+      openModal();
       window.clearInterval(this.intervalId);
     }
   }
