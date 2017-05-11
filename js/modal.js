@@ -11,10 +11,9 @@ const openModal = () => {
   }
 
   fetchGiphy().then((res) => {
-    debugger
     $f('#game-over').attr("src", res.data[0].images.downsized.url)
     modal.style.display = "block";
-  })
+  });
 
   // Get the <span> element that closes the modal
   let span = document.getElementsByClassName("close")[0];
