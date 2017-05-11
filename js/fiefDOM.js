@@ -68,9 +68,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
+/***/ (function(module, exports) {
 
 class DOMNodeCollection {
   constructor(nodes) {
@@ -203,28 +201,27 @@ class DOMNodeCollection {
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (DOMNodeCollection);
+module.exports = DOMNodeCollection;
 
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_node_collection__ = __webpack_require__(0);
+const DOMNodeCollection = __webpack_require__(0);
 
+let _docReadyCallbacks = [];
+let _docReady = false;
 
 window.$f = (arg) => {
-
   switch (typeof(arg)) {
     case 'function':
-      return queueDocReadyCallback(arg);
+      return enqueueDocReadyCallback(arg);
     case 'string':
       let nodes = Array.from(document.querySelectorAll(arg));
-      return new __WEBPACK_IMPORTED_MODULE_0__dom_node_collection__["a" /* default */](nodes);
+      return new DOMNodeCollection(nodes);
     default:
-      return new __WEBPACK_IMPORTED_MODULE_0__dom_node_collection__["a" /* default */]([arg]);
+      return new DOMNodeCollection([arg]);
   }
 };
 
@@ -233,48 +230,41 @@ window.$f.extend = (...args) => {
 };
 
 window.$f.ajax = (options) => {
-  // step 1. instantiate a new request
-  const request = new XMLHttpRequest();
+  return new Promise((successCallback, errorCallback) => {
+    const request = new XMLHttpRequest();
 
-  // step 1.1 define suitable defaults
-  const defaults = {
-    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-    method: 'GET',
-    url: '',
-    data: {},
-    success: (response) => console.log(response),
-    error: (error) => console.log(error)
-  };
+    const defaults = {
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      method: 'GET',
+      url: '',
+      data: {},
+      success: () => {},
+      error: () => {}
+    };
 
-  // step 1.2 merge user chosen options with defaults
-  options = window.$f.extend(defaults, options);
+    options = window.$f.extend(defaults, options);
 
-  // step 1.3 make sure http verb is in all CAPS
-  options.method = options.method.toUpperCase();
+    options.method = options.method.toUpperCase();
 
-  // step 2. specify the http verb and path
-  request.open(options.method, options.url);
+    request.open(options.method, options.url);
 
-  // step 3 - register a callback
-  request.onload = () => {
-    let response = JSON.parse(request.response);
-    if(request.status === 200) {
-      options.success(response);
-    } else {
-      options.error(response);
-    }
-  };
+    request.onload = () => {
+      let response = JSON.parse(request.response);
+      if(request.status === 200) {
+        options.success(response);
+        successCallback(response);
+      } else {
+        options.error(response);
+        errorCallback(response);
+      }
+    };
 
-  // step 4 - send off the request with optional data
-  const optionalData = options.data;
-  request.send(JSON.stringify(optionalData));
-
+    const optionalData = options.data;
+    request.send(JSON.stringify(optionalData));
+  });
 };
 
-let _docReadyCallbacks = [];
-let _docReady = false;
-
-const queueDocReadyCallback = (callback) => {
+const enqueueDocReadyCallback = (callback) => {
   if (!_docReady) {
     _docReadyCallbacks.push(callback);
   } else {
