@@ -1,3 +1,4 @@
+const openModal = require ('./modal.js');
 const Board = require('./board.js');
 
 class View {
@@ -17,6 +18,9 @@ class View {
     $f(window).on("keydown", this.handleKeyEvent.bind(this));
   }
 
+  gameOver() {
+    openModal();
+  }
   setupGrid() {
     let html = "";
 
@@ -62,7 +66,7 @@ class View {
       this.render();
     } else {
 
-      alert("You lose!");
+      this.gameOver();
       window.clearInterval(this.intervalId);
     }
   }

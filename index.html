@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>Snake</title>
     <link rel="stylesheet" type="text/css" href="./css/snake.css">
-    <script type="text/javascript" src="./js/fiefDOM.js"   charset="utf-8"></script>
-    <script src="./js/bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/modal.css">
+    <script src="./js/FiefDOM.js" charset="utf-8"></script>
     <script src="https://use.fontawesome.com/612adf211d.js"></script>
+    <script src="./js/bundle.js"></script>
   </head>
 
   <body>
@@ -21,6 +22,15 @@
     </header>
 
     <figure class="snake-game"></figure>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="game-over" src="" alt="">
+      </div>
+    </div>
+
     <footer>
       <p>This implementation of Snake was built with <a class="source" href="https://github.com/nabchar/FiefDOM">FiefDOM</a>, a custom DOM manipulation library. </p>
       <ul class="icons">
